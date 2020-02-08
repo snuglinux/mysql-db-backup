@@ -1,0 +1,29 @@
+#!/bin/bash
+
+CURRENT_VERSION=0.0.0
+INSTALL_PREFIX=/usr
+BASE_NAME=`basename "$0"`
+CONFIG_FILE=/etc/${BASE_NAME}/${BASE_NAME}.conf
+PO_DIR="/usr/share/${BASE_NAME}"
+DATE=`date "+%Y_%m_%d"`
+
+if ! [ -f ${PO_DIR}/mysql-db-backup.func ]; then
+  case $lang in
+     ru) echo -e "\e[31mОшибка:\e[0m не найден файл mysql-db-backup.func в '${PO_DIR}'!!!";;
+     uk) echo -e "\e[31mПомилка:\e[0m не знайдений файл mysql-db-backup.func у '${PO_DIR}'!!!";;
+     *)  echo -e "\e[31mError:\e[0m file mysql-db-backup.func not found in '${PO_DIR}'!!!";;
+  esac
+     exit 1
+  else
+  source ${PO_DIR}/mysql-db-backup.func
+fi
+
+set_options $*
+
+check_configuration
+
+backup_mysql
+
+delete_old_backups
+
+delete_old_logs
