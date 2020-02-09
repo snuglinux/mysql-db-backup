@@ -118,7 +118,6 @@ get_files() {
 
 #========================
 backup_mysql(){
-
   FILE_LIST=`echo $(get_files "/etc/mysql-db-backup/hosts" "*.conf")`;
   TIME=$(date +%k:%M:%S)
   if [ -z ${_HOST} ]; then
