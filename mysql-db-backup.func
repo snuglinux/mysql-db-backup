@@ -153,7 +153,11 @@ backup_mysql(){
               continue
            fi
            # squeeze the SQL file
-           gzip -9 -c ${SQL_PATH}/${HOST}-${database}.sql > ${SQL_PATH}/${HOST}-${database}-${DATE}-${TIME}.sql.gz
+           gzip -9 -c ${SQL_PATH}/${HOST}-${database}.sql > ${SQL_PATH}/${DATE}-${TIME}-${HOST}-${database}.sql.gz
+           if [ "$?" != 0 ]; then
+              show_message_log FAILED_COMPRESS_FILE ${HOST}-${database}.sql
+              continue
+           fi
            # delete the SQL file
            rm -f ${SQL_PATH}/${HOST}-${database}.sql
         done
@@ -198,7 +202,11 @@ backup_mysql(){
               continue
            fi
            # squeeze the SQL file
-           gzip -9 -c ${SQL_PATH}/${_HOST}-${database}.sql > ${SQL_PATH}/${_HOST}-${database}-${DATE}-${TIME}.sql.gz
+           gzip -9 -c ${SQL_PATH}/${_HOST}-${database}.sql > ${SQL_PATH}/${DATE}-${TIME}-${_HOST}-${database}.sql.gz
+           if [ "$?" != 0 ]; then
+              show_message_log FAILED_COMPRESS_FILE ${HOST}-${database}.sql
+              continue
+           fi
            # delete the SQL file
            rm -f ${SQL_PATH}/${_HOST}-${database}.sql
         done
@@ -210,7 +218,11 @@ backup_mysql(){
            continue
         fi
         # squeeze the SQL file
-        gzip -9 -c ${SQL_PATH}/${_HOST}-${_DATABASES}.sql > ${SQL_PATH}/${_HOST}-${_DATABASES}-${DATE}-${TIME}.sql.gz
+        gzip -9 -c ${SQL_PATH}/${_HOST}-${_DATABASES}.sql > ${SQL_PATH}/${DATE}-${TIME}-${_HOST}-${_DATABASES}.sql.gz
+        if [ "$?" != 0 ]; then
+           show_message_log FAILED_COMPRESS_FILE ${HOST}-${database}.sql
+           continue
+        fi
         # delete the SQL file
         rm -f ${SQL_PATH}/${_HOST}-${_DATABASES}.sql
       fi

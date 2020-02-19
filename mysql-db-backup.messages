@@ -193,12 +193,21 @@ case $lang in
 esac;;
 
 ##########
+FAILED_COMPRESS_FILE*)###################################################
+############
+case $lang in
+  ru) echo -e "${FC_2}Ошибка:${FC_0} Не удалось сжать файл ${FC_3}$2${FC_0}";;
+  uk) echo -e "${FC_2}Помилка:${FC_0} Не вдалося отримати список баз даних для ${FC_3}$2${FC_0}";;
+  *)  echo -e "${FC_2}ERROR:${FC_0} Failed to get the list of databases for ${FC_3}$2${FC_0}";;
+esac;;
+
+##########
 ERROR_CREATING_BACKUP*)###################################################
 ############
 case $lang in
   ru) echo -e "${FC_2}Ошибка:${FC_0} Не удалось создать резервную копию базы данных: ${FC_3}$2${FC_0}";;
-  uk) echo -e "${FC_2}Помилка:${FC_0} Не вдалося створити резервну копію бази даних: ${FC_3}$2${FC_0}";;
-  *)  echo -e "${FC_2}ERROR:${FC_0} Failed to backup the database: ${FC_3}$2${FC_0}";;
+  uk) echo -e "${FC_2}Помилка:${FC_0} Не вдалося стиснути файл : ${FC_3}$2${FC_0}";;
+  *)  echo -e "${FC_2}ERROR:${FC_0} Ffailed to compress file: ${FC_3}$2${FC_0}";;
 esac;;
 
 ##########
