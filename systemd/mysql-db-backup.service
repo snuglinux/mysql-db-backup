@@ -3,3 +3,6 @@ Description=Running mysql-db-backup
 
 [Service]
 ExecStart=mysql-db-backup
+
+User=backup
+Group=backup

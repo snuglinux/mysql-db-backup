@@ -20,6 +20,14 @@ check_configuration(){
   if [ -z ${SQL_PATH} ]; then
      show_message_log VAR_NOT_SET "SQL_PATH"
   fi
+  if [ -z `getent passwd backup` ]; then
+     show_message_log USER_NOT_FOUND "backup"
+     exit 1;
+  fi
+  if [ -z `getent group backup` ]; then
+     show_message_log GROUP_NOT_FOUND "backup"
+     exit 1;
+  fi
   # log
   if [ -z ${LOG_PATH} ]; then
      LOG_PATH="/var/log/mysql-db-backup"
@@ -42,6 +50,11 @@ check_configuration(){
         exit 1;
      fi
   fi
+  if [ "backup" != `ls -dl ${SQL_PATH} | cut -d" " -f 3` ]; then
+     show_message_log INVALID_PERMISSIONS ${SQL_PATH}
+     exit 1;
+  fi
+
 }
 
 #=======================================
@@ -251,6 +264,10 @@ backup_mysql(){
          exit 1;
       fi
       smail -f=${FROM_ADDRESS} -t=${TO_ADDRESS} -s=${SUBJECT} -r=Admin -m=${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
+      if [ "$?" != 0 ]; then
+         show_message_log FAILED_SEND_EMAIL
+         exit 1
+      fi
    fi
 }
 

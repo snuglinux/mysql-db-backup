@@ -219,6 +219,42 @@ case $lang in
   *)  echo -e "${FC_2}ERROR:${FC_0} Package not installed: ${FC_3}$2${FC_0}";;
 esac;;
 
+##########
+USER_NOT_FOUND*)###################################################
+############
+case $lang in
+  ru) echo -e "${FC_2}Ошибка:${FC_0} Не найден пользователь: ${FC_3}$2${FC_0}";;
+  uk) echo -e "${FC_2}Помилка:${FC_0} Не знайдена група: ${FC_3}$2${FC_0}";;
+  *)  echo -e "${FC_2}ERROR:${FC_0} Group not found: ${FC_3}$2${FC_0}";;
+esac;;
+
+##########
+GROUP_NOT_FOUND*)###################################################
+############
+case $lang in
+  ru) echo -e "${FC_2}Ошибка:${FC_0} Не найдена группа: ${FC_3}$2${FC_0}";;
+  uk) echo -e "${FC_2}Помилка:${FC_0} Не знайдено користувача: ${FC_3}$2${FC_0}";;
+  *)  echo -e "${FC_2}ERROR:${FC_0} User not found: ${FC_3}$2${FC_0}";;
+esac;;
+
+##########
+INVALID_PERMISSIONS*)###################################################
+############
+case $lang in
+  ru) echo -e "${FC_2}Ошибка:${FC_0} Неверно установлены права на: ${FC_3}$2${FC_0}";;
+  uk) echo -e "${FC_2}Помилка:${FC_0} Невірно встановлені права на: ${FC_3}$2${FC_0}";;
+  *)  echo -e "${FC_2}ERROR:${FC_0} Invalid permissions: ${FC_3}$2${FC_0}";;
+esac;;
+
+##########
+FAILED_SEND_EMAIL)###################################################
+############
+case $lang in
+  ru) echo -e "${FC_2}Ошибка:${FC_0} Не удалось отправить электронное письмо${FC_0}";;
+  uk) echo -e "${FC_2}Помилка:${FC_0} Не вдалося відправити електронний лист${FC_0}";;
+  *)  echo -e "${FC_2}ERROR:${FC_0} Failed to send email${FC_0}";;
+esac;;
+
 *)
 echo -e "Unknown string $1";
 exit 1
