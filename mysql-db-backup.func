@@ -93,7 +93,7 @@ echo_log(){
      mkdir ${LOG_PATH}
   fi
   strip_escape_codes "$*" stripped
-  echo "$(date +%k:%M:%S): $stripped" >> ${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
+  echo "$(date +%H:%M:%S): $stripped" >> ${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
   echo -e $*
 }
 
@@ -103,7 +103,7 @@ show_message_log(){
      mkdir ${LOG_PATH}
   fi
   strip_escape_codes "$(show_message $*)" stripped
-  echo "$(date +%k:%M:%S): $stripped" >> ${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
+  echo "$(date +%H:%M:%S): $stripped" >> ${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
   show_message $*
 }
 
@@ -132,7 +132,7 @@ get_files() {
 #========================
 backup_mysql(){
   FILE_LIST=`echo $(get_files "/etc/mysql-db-backup/hosts" "*.conf")`;
-  TIME=$(date +%k:%M:%S)
+  TIME=$(date +%H:%M:%S)
   if [ -z ${_HOST} ]; then
      for file in ${FILE_LIST[@]}; do
         source "/etc/mysql-db-backup/hosts/${file}"

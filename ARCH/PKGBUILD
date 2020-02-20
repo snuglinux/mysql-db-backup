@@ -8,7 +8,7 @@ license=('GPL2')
 depends=("bash" "mariadb-clients")
 optdepends=("smail")
 source=("https://github.com/snuglinux/${pkgname}/archive/${pkgver}.zip")
-md5sums=('90d0c32c1df7a53aaa50e96d6a25a6e1')
+md5sums=('09d0390787667aad8b8e32961c6727cb')
 backup=( "etc/${pkgname}/${pkgname}.conf" "usr/lib/systemd/system/${pkgname}.timer.d/${pkgname}.conf" )
 install=${pkgname}.install
 
