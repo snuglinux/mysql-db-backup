@@ -263,7 +263,7 @@ backup_mysql(){
          show_message_log VAR_NOT_SET "SUBJECT"
          exit 1;
       fi
-      smail -f=${FROM_ADDRESS} -t=${TO_ADDRESS} -s=${SUBJECT} -r=Admin -m=${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
+      sudo smail -f=${FROM_ADDRESS} -t=${TO_ADDRESS} -s=${SUBJECT} -r=Admin -m=${LOG_PATH}/$(date +%Y.%m.%d)-${BASE_NAME}.log
       if [ "$?" != 0 ]; then
          show_message_log FAILED_SEND_EMAIL
          exit 1
