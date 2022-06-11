@@ -1,6 +1,6 @@
 pkgname="mysql-db-backup"
 pkgver=0.0.4
-pkgrel=1
+pkgrel=2
 pkgdesc="A script for automatically archiving MySQL databases."
 arch=('any')
 url="https://github.com/snuglinux/${pkgname}"
@@ -36,6 +36,7 @@ package(){
   install -Dm 644 etc/sudoers.d/${pkgname}  "${pkgdir}/etc/sudoers.d/${pkgname}"
 
   install -m644 ${pkgname}.messages         "${pkgdir}/usr/share/${pkgname}"
+  install -m644 ${pkgname}.func             "${pkgdir}/usr/share/${pkgname}"
   install -m644 systemd/${pkgname}.timer    "${pkgdir}/usr/lib/systemd/system"
   install -m644 systemd/${pkgname}.service  "${pkgdir}/usr/lib/systemd/system"
   install -m644 systemd/${pkgname}.timer.d/${pkgname}.conf "${pkgdir}/usr/lib/systemd/system/${pkgname}.timer.d/${pkgname}.conf"
