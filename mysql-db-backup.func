@@ -132,7 +132,7 @@ get_files() {
 #========================
 backup_mysql(){
   FILE_LIST=`echo $(get_files "/etc/mysql-db-backup/hosts" "*.conf")`;
-  TIME=$(date +%H:%M:%S)
+  TIME=$(date +%H_%M_%S)
   if [ -z ${_HOST} ]; then
      for file in ${FILE_LIST[@]}; do
         source "/etc/mysql-db-backup/hosts/${file}"
